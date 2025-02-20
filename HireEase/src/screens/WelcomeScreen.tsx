@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Button, StyleSheet, Text, View, Animated } from "react-native";
+import { Button, StyleSheet, Text, Animated } from "react-native";
 
 export default function WelcomeScreen({ navigation }: any) {
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
@@ -9,7 +9,7 @@ export default function WelcomeScreen({ navigation }: any) {
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 1000, // 0.5 sec fade-in
+        duration: 1000, // 1 sec fade-in
         useNativeDriver: true,
       }),
       Animated.timing(translateYAnim, {
