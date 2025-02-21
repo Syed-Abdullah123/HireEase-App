@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { Button, StyleSheet, Text, Animated } from "react-native";
+import { StyleSheet, Text, Animated, ImageBackground } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
 
 export default function WelcomeScreen({ navigation }: any) {
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
@@ -21,29 +25,75 @@ export default function WelcomeScreen({ navigation }: any) {
   }, []);
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        { opacity: fadeAnim, transform: [{ translateY: translateYAnim }] },
-      ]}
+    <ImageBackground
+      source={require("../../assets/images/CV-pic.png")} // Make sure this exists
+      style={styles.background}
+      resizeMode="contain"
     >
-      <Text style={styles.title}>Welcome to the AI Resume Builder</Text>
-      <Button title="Sign Up" onPress={() => navigation.navigate("Register")} />
-      <Button title="Sign In" onPress={() => navigation.navigate("Signin")} />
-    </Animated.View>
+      {/* Gradient Overlay */}
+      <LinearGradient
+        colors={["transparent", "#F7F4F3", "#F7F4F3"]}
+        style={styles.gradient}
+      />
+
+      {/* Content */}
+      <Animated.View
+        style={[
+          styles.container,
+          { opacity: fadeAnim, transform: [{ translateY: translateYAnim }] },
+        ]}
+      >
+        <Text style={styles.title}>
+          Welcome to{" "}
+          <Text style={{ color: "#5B2333", fontFamily: "Lexend-Bold" }}>
+            HireEase
+          </Text>
+        </Text>
+        <Text style={styles.subtitle}>Your Next Opportunity Starts Here!</Text>
+        {/* Buttons */}
+
+        <PrimaryButton
+          title="Get Started"
+          onPress={() => navigation.navigate("Register")}
+        />
+        <SecondaryButton
+          title="Already have an account"
+          onPress={() => navigation.navigate("Signin")}
+        />
+      </Animated.View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    backgroundColor: "#F7F4F3",
+  },
+  gradient: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: "70%",
+  },
+  container: {
     alignItems: "center",
-    gap: 10,
+    paddingBottom: 60,
+    paddingHorizontal: 20,
+    width: "100%",
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontFamily: "Lexend-Medium",
+    fontSize: 28,
+    color: "#333",
     textAlign: "center",
+  },
+  subtitle: {
+    fontFamily: "Lexend-Regular",
+    fontSize: 16,
+    color: "#555",
+    textAlign: "center",
+    marginBottom: 20,
   },
 });
