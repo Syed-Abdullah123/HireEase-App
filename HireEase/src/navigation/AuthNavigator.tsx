@@ -7,6 +7,7 @@ import {
 
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SignupScreen from "../screens/SignupScreen";
+import OtpScreen from "../screens/OtpScreen";
 import SigninScreen from "../screens/SigninScreen";
 
 const Stack = createStackNavigator();
@@ -27,6 +28,17 @@ export default function AuthNavigator() {
       <Stack.Screen
         name="Register"
         component={SignupScreen}
+        options={{
+          gestureEnabled: true,
+          cardStyle: {
+            backgroundColor: "transparent",
+            ...TransitionPresets.ModalSlideFromBottomIOS,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Otp"
+        component={OtpScreen}
         options={{
           gestureEnabled: true,
           cardStyle: {
