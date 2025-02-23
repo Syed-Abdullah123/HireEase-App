@@ -78,11 +78,13 @@ const styles = StyleSheet.create({
     fontFamily: "Lexend-Medium",
     fontSize: 24,
     textAlign: "center",
+    color: "#333",
   },
   enterCodeText: {
-    fontFamily: "Lexend-Medium",
+    fontFamily: "Lexend-Regular",
     fontSize: 14,
     textAlign: "center",
+    color: "#555",
     width: "90%",
     alignSelf: "center",
     marginTop: 20,
@@ -101,5 +103,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Lexend-Bold",
     fontSize: 20,
+    color: "#333",
   },
 });
