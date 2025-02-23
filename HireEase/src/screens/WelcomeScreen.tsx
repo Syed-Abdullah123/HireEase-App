@@ -26,7 +26,7 @@ export default function WelcomeScreen({ navigation }: any) {
 
   return (
     <ImageBackground
-      source={require("../../assets/images/CV-pic.png")} // Make sure this exists
+      source={require("../../assets/images/CV.png")} // Make sure this exists
       style={styles.background}
       resizeMode="contain"
     >
@@ -45,8 +45,11 @@ export default function WelcomeScreen({ navigation }: any) {
       >
         <Text style={styles.title}>
           Welcome to{" "}
+          <Text style={{ color: "#5B2333", fontFamily: "Lexend-Regular" }}>
+            Hire
+          </Text>
           <Text style={{ color: "#5B2333", fontFamily: "Lexend-Bold" }}>
-            HireEase
+            Ease
           </Text>
         </Text>
         <Text style={styles.subtitle}>Your Next Opportunity Starts Here!</Text>
