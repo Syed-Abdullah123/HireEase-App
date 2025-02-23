@@ -1,7 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+
+// Import your Custom SVG's
+import HomeOutlineIcon from "../../assets/svg/HomeOutline";
+import HomeFilledIcon from "../../assets/svg/HomeFilled";
+import DocumentOutlineIcon from "../../assets/svg/DocumentOutline";
+import DocumentFilledIcon from "../../assets/svg/DocumentFilled";
+import SettingOutlineIcon from "../../assets/svg/SettingOutline";
+import SettingFilledIcon from "../../assets/svg/SettingFilled";
 
 import HomeScreen from "../screens/HomeScreen";
 import TemplateScreen from "../screens/TemplateScreen";
@@ -14,27 +21,70 @@ export default function TabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let icon;
 
           if (route.name === "Home") {
-            iconName = focused ? "home" : "home-outline";
+            icon = focused ? (
+              <HomeFilledIcon width={size} height={size} fill={color} />
+            ) : (
+              <HomeOutlineIcon width={size} height={size} fill={color} />
+            );
           } else if (route.name === "Template") {
-            iconName = focused ? "document" : "document-outline";
-          } else if (route.name === "Setting") {
-            iconName = focused ? "settings" : "settings-outline";
+            icon = focused ? (
+              <DocumentFilledIcon width={size} height={size} fill={color} />
+            ) : (
+              <DocumentOutlineIcon width={size} height={size} fill={color} />
+            );
+          } else if (route.name === "Settings") {
+            icon = focused ? (
+              <SettingFilledIcon width={size} height={size} fill={color} />
+            ) : (
+              <SettingOutlineIcon width={size} height={size} fill={color} />
+            );
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return icon;
         },
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "#bbb",
-        tabBarStyle: { backgroundColor: "white", height: 55 },
+        tabBarActiveTintColor: "#5B2333",
+        tabBarInactiveTintColor: "#aaa",
+        tabBarLabelStyle: styles.tabBarLabelStyle,
+        tabBarStyle: styles.tabBarStyle,
+        headerStyle: styles.headerStyle,
+        headerTitleStyle: styles.headerTitleStyle,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Template" component={TemplateScreen} />
-      <Tab.Screen name="Setting" component={SettingScreen} />
+      <Tab.Screen
+        name="Template"
+        component={TemplateScreen}
+        options={{ title: "Templates" }}
+      />
+      <Tab.Screen name="Settings" component={SettingScreen} />
     </Tab.Navigator>
   );
 }
 
+const styles = StyleSheet.create({
+  tabBarStyle: {
+    backgroundColor: "#F7F4F3",
+    height: 55,
+    borderRadius: 30,
+    shadowColor: "#5B2333",
+    elevation: 3,
+    width: "80%",
+    alignSelf: "center",
+    bottom: 10,
+  },
+  tabBarLabelStyle: {
+    fontFamily: "Lexend-Regular",
+    fontSize: 12,
+  },
+  headerStyle: {
+    elevation: 0,
+    backgroundColor: "#F7F4F3",
+  },
+  headerTitleStyle: {
+    fontFamily: "Lexend-Bold",
+    color: "#333",
+  },
+});
