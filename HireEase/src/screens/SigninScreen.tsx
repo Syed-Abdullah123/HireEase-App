@@ -56,7 +56,7 @@ export default function SigninScreen({ navigation }: any) {
 
       <PrimaryButton
         title="Sign In"
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("TabNavigator", { screen: "Home" })}
       />
 
       <View style={styles.bottomText}>
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginTop: 20,
+    color: "#333",
   },
   inputContainer: {
     marginTop: 20,
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Lexend-Regular",
     fontSize: 14,
+    color: "#555",
   },
   buttonText: {
     fontFamily: "Lexend-Medium",
