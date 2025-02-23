@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
+import { PlatformPressable } from "@react-navigation/elements";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // Import your Custom SVG's
@@ -51,6 +52,12 @@ export default function TabNavigator() {
         tabBarStyle: styles.tabBarStyle,
         headerStyle: styles.headerStyle,
         headerTitleStyle: styles.headerTitleStyle,
+        tabBarButton: (props) => (
+          <PlatformPressable
+            {...props}
+            android_ripple={{ color: "transparent" }} // Disables the ripple effect for Android
+          />
+        ),
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
