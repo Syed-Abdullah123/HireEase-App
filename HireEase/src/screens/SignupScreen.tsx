@@ -9,7 +9,9 @@ export default function SignupScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>HireEase</Text>
+      <Text style={styles.logo}>
+        Hire<Text style={{ fontFamily: "Lexend-Bold" }}>Ease</Text>
+      </Text>
       <Text style={styles.title}>
         Land Your Dream Job with a Winning Resume!
       </Text>
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    fontFamily: "Lexend-Bold",
+    fontFamily: "Lexend-Regular",
     fontSize: 24,
     textAlign: "center",
     // color: "#5928D6",
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "80%",
     alignSelf: "center",
+    color: "#333",
   },
   closeButton: {
     position: "absolute",
@@ -132,6 +135,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: "7%",
     top: 15,
+    color: "#555",
   },
   privacyPolicyLink: {
     textDecorationLine: "underline",
