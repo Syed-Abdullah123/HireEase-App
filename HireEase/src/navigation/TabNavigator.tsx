@@ -23,6 +23,8 @@ export default function TabNavigator() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let icon;
+          let backgroundColor = focused ? "#5B2333" : "#aaa"; // Active and inactive background colors
+          let textColor = focused ? "#fff" : "#333"; // Adjust text color for contrast
 
           if (route.name === "Home") {
             icon = focused ? (
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     shadowColor: "#5B2333",
     elevation: 3,
-    width: "80%",
+    width: "60%",
     alignSelf: "center",
     bottom: 10,
   },
