@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { PlatformPressable } from "@react-navigation/elements";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -14,6 +14,7 @@ import SettingFilledIcon from "../../assets/svg/SettingFilled";
 import HomeScreen from "../screens/HomeScreen";
 import TemplateScreen from "../screens/TemplateScreen";
 import SettingScreen from "../screens/SettingScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -62,7 +63,20 @@ export default function TabNavigator() {
         ),
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerRight: () => (
+            <TouchableOpacity
+              style={styles.headerIcon}
+              onPress={() => console.log("Notification icon pressed")}
+            >
+              <Ionicons name="notifications-outline" size={20} color="#555" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
       <Tab.Screen
         name="Template"
         component={TemplateScreen}
@@ -95,5 +109,12 @@ const styles = StyleSheet.create({
   headerTitleStyle: {
     fontFamily: "Lexend-Bold",
     color: "#333",
+  },
+  headerIcon: {
+    padding: 10,
+    right: 15,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: "#55555530",
   },
 });
