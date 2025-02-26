@@ -1,12 +1,22 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  Pressable,
+} from "react-native";
 import resumes from "../dummydata/resumes";
 
 const renderItem = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => console.log("Presed resume")}
+    >
       <View style={styles.resumesContainer}>
-        <View style={styles.resumesContainer}>
+        <View style={styles.resumesInnerContainer}>
           <View style={styles.resumeBackground}>
             <Image source={item.image} style={styles.resumeImage} />
           </View>
@@ -19,7 +29,7 @@ const renderItem = ({ item }) => {
           {item.lastupdate}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 const MyResumeComponent = () => {
@@ -28,7 +38,19 @@ const MyResumeComponent = () => {
       data={resumes}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={{ gap: 10 }}
+      contentContainerStyle={{ gap: 2 }}
+      showsVerticalScrollIndicator={false}
+      ListEmptyComponent={() => {
+        return (
+          <>
+            <Text style={styles.emptyText}>No recent resumes yet!</Text>
+            <Text style={[styles.emptyText, { marginTop: 10 }]}>
+              Click on New resume or the Templates in the bottom tab to get
+              started.
+            </Text>
+          </>
+        );
+      }}
     />
   );
 };
@@ -39,20 +61,24 @@ const styles = StyleSheet.create({
   container: {
     // backgroundColor: "#F7F4F3",
     // backgroundColor: "red",
-    elevation: 1,
+    // elevation: 1,
     width: "100%",
     height: 80,
-    padding: 10,
   },
   resumesContainer: {
-    // backgroundColor: "yellow",
-    // elevation: 3,
-    // width: "100%",
-    // height: 80,
-    // padding: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    // borderWidth: 1,
+    // borderRadius: 5,
+    // borderColor: "#ccc",
+    backgroundColor: "#55555510",
+    padding: 5,
+    paddingHorizontal: 10,
+  },
+  resumesInnerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
     gap: 10,
   },
   resumeBackground: {
@@ -76,6 +102,11 @@ const styles = StyleSheet.create({
   resumeStyle: {
     fontFamily: "Lexend-Regular",
     fontSize: 12,
-    color: "#bbb",
+    color: "#aaa",
+  },
+  emptyText: {
+    fontFamily: "Lexend-Medium",
+    fontSize: 14,
+    color: "#555",
   },
 });
