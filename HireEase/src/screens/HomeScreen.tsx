@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     marginTop: 20,
-    gap: 15,
+    gap: 10,
   },
   mid1: {
     padding: 5,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 5,
     alignItems: "center",
-    borderRadius: 7,
+    borderRadius: 5,
     backgroundColor: "#55555510",
   },
   midImage: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   text: {
-    fontFamily: "Lexend-Medium",
+    fontFamily: "Lexend-Regular",
     fontSize: 15,
     color: "#333",
   },
