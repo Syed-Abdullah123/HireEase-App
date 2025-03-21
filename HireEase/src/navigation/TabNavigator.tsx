@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Dimensions } from "react-native";
 import { PlatformPressable } from "@react-navigation/elements";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -16,6 +16,7 @@ import TemplateScreen from "../screens/TemplateScreen";
 import SettingScreen from "../screens/SettingScreen";
 import { Ionicons } from "@expo/vector-icons";
 
+const { width, height } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
@@ -24,8 +25,6 @@ export default function TabNavigator() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let icon;
-          let backgroundColor = focused ? "#5B2333" : "#aaa"; // Active and inactive background colors
-          let textColor = focused ? "#fff" : "#333"; // Adjust text color for contrast
 
           if (route.name === "Home") {
             icon = focused ? (
@@ -92,11 +91,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F4F3",
     height: 55,
     borderRadius: 30,
-    shadowColor: "#5B2333",
+    // shadowColor: "#5B2333",
     elevation: 3,
     width: "60%",
     alignSelf: "center",
     bottom: 10,
+    borderTopWidth: 0,
   },
   tabBarLabelStyle: {
     fontFamily: "Lexend-Regular",
