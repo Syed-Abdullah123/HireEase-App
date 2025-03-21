@@ -35,7 +35,7 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         <RootNavigator />
-        <StatusBar style="auto" />
+        <StatusBar style="auto" backgroundColor="#F7F4F3" />
       </NavigationContainer>
     </PaperProvider>
   );
