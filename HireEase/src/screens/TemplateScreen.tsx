@@ -10,6 +10,7 @@ import {
   Modal,
   Dimensions,
   Pressable,
+  Keyboard,
 } from "react-native";
 import SearchComponent from "../components/SearchComponent";
 import { templates } from "../dummydata/resumeTemplates";
@@ -123,6 +124,8 @@ export default function TemplateScreen() {
             </Text>
           </View>
         )}
+        keyboardShouldPersistTaps="handled"
+        overScrollMode="never"
       />
 
       {/* Template Detail Modal */}
@@ -204,7 +207,7 @@ const styles = StyleSheet.create({
   },
   templateContainer: {
     flex: 1,
-    marginBottom: 10,
+    marginBottom: 15,
   },
   template: {
     padding: 10,
@@ -219,6 +222,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "Lexend-Bold",
     fontSize: 14,
+    color: "#5b2333",
     textAlign: "center",
   },
   templateStyle: {
