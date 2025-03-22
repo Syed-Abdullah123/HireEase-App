@@ -1,5 +1,11 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, View, Dimensions } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Dimensions,
+  Keyboard,
+} from "react-native";
 import { PlatformPressable } from "@react-navigation/elements";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -20,6 +26,22 @@ const { width, height } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true);
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -51,7 +73,10 @@ export default function TabNavigator() {
         tabBarActiveTintColor: "#5B2333",
         tabBarInactiveTintColor: "#aaa",
         tabBarLabelStyle: styles.tabBarLabelStyle,
-        tabBarStyle: styles.tabBarStyle,
+        tabBarStyle: [
+          styles.tabBarStyle,
+          keyboardVisible && { display: "none" },
+        ],
         headerStyle: styles.headerStyle,
         headerTitleStyle: styles.headerTitleStyle,
         tabBarButton: (props) => (
