@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    height: 40,
     color: "#333",
     fontFamily: "Lexend-Regular",
   },
