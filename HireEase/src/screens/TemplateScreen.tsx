@@ -15,6 +15,7 @@ import {
 import SearchComponent from "../components/SearchComponent";
 import { templates } from "../dummydata/resumeTemplates";
 import PrimaryButton from "../components/PrimaryButton";
+import TemplateRenderer from "../components/TemplateRenderer";
 
 const { width, height } = Dimensions.get("window");
 
@@ -33,7 +34,7 @@ const templateStyles = [
   { id: 5, name: "Simple" },
 ];
 
-export default function TemplateScreen() {
+export default function TemplateScreen({ navigation }: { navigation: any }) {
   const [activeId, setActiveId] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
@@ -69,7 +70,8 @@ export default function TemplateScreen() {
       onPress={() => setSelectedTemplate(item)}
     >
       <View style={styles.template}>
-        <Image source={item.image} style={styles.image} />
+        {/* {/* <Image source={item.image} style={styles.image} /> */}
+        <TemplateRenderer id={item.id} title={item.title} style={item.style} />
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.templateStyle}>{item.style}</Text>
       </View>
@@ -91,6 +93,7 @@ export default function TemplateScreen() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.row}
+          overScrollMode="never"
         >
           {templateStyles.map((item) => (
             <TouchableOpacity
@@ -158,7 +161,7 @@ export default function TemplateScreen() {
               </Text>
               <PrimaryButton
                 title="Use This Template"
-                onPress={() => {}}
+                onPress={() => navigation.navigate("ResumeTemplate")}
                 backgroundColor="#5B2333"
                 textColor="#fff"
               />
