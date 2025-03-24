@@ -70,8 +70,8 @@ export default function TemplateScreen({ navigation }: { navigation: any }) {
       onPress={() => setSelectedTemplate(item)}
     >
       <View style={styles.template}>
-        {/* {/* <Image source={item.image} style={styles.image} /> */}
-        <TemplateRenderer id={item.id} title={item.title} style={item.style} />
+        {/* <TemplateRenderer id={item.id} title={item.title} style={item.style} /> */}
+        <Image source={item.image} style={styles.image} />
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.templateStyle}>{item.style}</Text>
       </View>
@@ -161,7 +161,7 @@ export default function TemplateScreen({ navigation }: { navigation: any }) {
               </Text>
               <PrimaryButton
                 title="Use This Template"
-                onPress={() => navigation.navigate("ResumeTemplate")}
+                onPress={() => navigation.navigate("Resume")}
                 backgroundColor="#5B2333"
                 textColor="#fff"
               />
