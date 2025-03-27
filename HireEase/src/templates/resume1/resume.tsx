@@ -1,116 +1,199 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const ResumeTemplate = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      {/* Header Section */}
-      <View style={styles.header}>
-        <Text style={styles.name}>OLIVIA WILSON</Text>
-        <Text style={styles.jobTitle}>MARKETING MANAGER</Text>
-      </View>
+interface ResumeTemplateProps {
+  name?: string;
+  jobTitle?: string;
+  contactInfo?: {
+    phone?: string;
+    email?: string;
+    address?: string;
+    website?: string;
+  };
+  education?: Array<{
+    period: string;
+    institution: string;
+    degree: string;
+  }>;
+  skills?: string[];
+  languages?: Array<{
+    language: string;
+    proficiency: string;
+  }>;
+  profileSummary?: string;
+  workExperience?: Array<{
+    company: string;
+    period: string;
+    role: string;
+    responsibilities: string[];
+  }>;
+}
 
-      {/* Main Content */}
-      <View style={styles.content}>
-        {/* Left Column */}
-        <View style={styles.leftColumn}>
-          <View style={[styles.section, { paddingRight: 18 }]}>
-            <Text style={styles.sectionTitle}>CONTACT</Text>
-            <Text style={styles.text}>+123-456-7890</Text>
-            <Text style={styles.text}>hello@reallygreatsite.com</Text>
-            <Text style={styles.text}>123 Anywhere St., Any City</Text>
-            <Text style={styles.text}>www.reallygreatsite.com</Text>
+const ResumeTemplate = forwardRef<View, ResumeTemplateProps>(
+  (
+    {
+      name = "OLIVIA WILSON",
+      jobTitle = "MARKETING MANAGER",
+      contactInfo = {
+        phone: "+123-456-7890",
+        email: "hello@reallygreatsite.com",
+        address: "123 Anywhere St., Any City",
+        website: "www.reallygreatsite.com",
+      },
+      education = [
+        {
+          period: "2029 - 2030",
+          institution: "UNIVERSITY NAME",
+          degree: "Master of Business Management",
+        },
+        {
+          period: "2025 - 2029",
+          institution: "UNIVERSITY NAME",
+          degree: "Bachelor of Business Management",
+        },
+      ],
+      skills = [
+        "Project Management",
+        "Public Relations",
+        "Leadership",
+        "Effective Communication",
+      ],
+      languages = [
+        { language: "English", proficiency: "Fluent" },
+        { language: "French", proficiency: "Fluent" },
+        { language: "German", proficiency: "Basics" },
+        { language: "Spanish", proficiency: "Intermediate" },
+      ],
+      profileSummary = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate consectetur ipsum praesentium minima quas vero nobis! Ut, nemo omnis, consectetur assumenda asperiores ad ipsam provident odio nesciunt, beatae nobis repellat?",
+      workExperience = [
+        {
+          company: "CURRENT COMPANY NAME",
+          period: "2030 - Present",
+          role: "Marketing Manager & Specialist",
+          responsibilities: [
+            ". Led successful marketing strategies.",
+            ". Managed cross-channel campaigns.",
+            ". Managed social media accounts.",
+          ],
+        },
+        {
+          company: "PREVIOUS COMPANY NAME",
+          period: "2025 - 2029",
+          role: "Marketing Manager & Specialist",
+          responsibilities: [
+            ". Conducted market research.",
+            ". Developed marketing content.",
+            ". Managed social media accounts.",
+          ],
+        },
+        {
+          company: "PREVIOUS COMPANY NAME",
+          period: "2020 - 2024",
+          role: "Marketing Manager & Specialist",
+          responsibilities: [
+            ". Led successful marketing strategies.",
+            ". Managed cross-channel campaigns.",
+            ". Managed social media accounts.",
+          ],
+        },
+      ],
+    },
+    ref
+  ) => {
+    return (
+      <SafeAreaView ref={ref} style={styles.page}>
+        <View style={styles.container}>
+          {/* Header Section */}
+          <View style={styles.header}>
+            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.jobTitle}>{jobTitle}</Text>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>EDUCATION</Text>
-            <Text style={[styles.subTitle, { marginBottom: -7 }]}>
-              2029 - 2030
-            </Text>
-            <Text style={styles.subTitle}>BORCELLE UNIVERSITY</Text>
-            <Text style={styles.text}>Master of Business Management</Text>
-            <Text style={[styles.subTitle, { marginBottom: -7 }]}>
-              2025 - 2029
-            </Text>
-            <Text style={styles.subTitle}>BORCELLE UNIVERSITY</Text>
-            <Text style={styles.text}>Bachelor of Business Management</Text>
-          </View>
+          {/* Main Content */}
+          <View style={styles.content}>
+            {/* Left Column */}
+            <View style={styles.leftColumn}>
+              <View style={[styles.section, { paddingRight: 18 }]}>
+                <Text style={styles.sectionTitle}>CONTACT</Text>
+                <Text style={styles.text}>{contactInfo.phone}</Text>
+                <Text style={styles.text}>{contactInfo.email}</Text>
+                <Text style={styles.text}>{contactInfo.address}</Text>
+                <Text style={styles.text}>{contactInfo.website}</Text>
+              </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>SKILLS</Text>
-            <Text style={styles.text}>• Project Management</Text>
-            <Text style={styles.text}>• Public Relations</Text>
-            <Text style={styles.text}>• Leadership</Text>
-            <Text style={styles.text}>• Effective Communication</Text>
-          </View>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>EDUCATION</Text>
+                {education.map((edu, index) => (
+                  <React.Fragment key={index}>
+                    <Text style={[styles.subTitle, { marginBottom: -7 }]}>
+                      {edu.period}
+                    </Text>
+                    <Text style={styles.subTitle}>{edu.institution}</Text>
+                    <Text style={styles.text}>{edu.degree}</Text>
+                  </React.Fragment>
+                ))}
+              </View>
 
-          <View style={[styles.section, { borderBottomWidth: 0 }]}>
-            <Text style={styles.sectionTitle}>LANGUAGES</Text>
-            <Text style={styles.text}>English: Fluent</Text>
-            <Text style={styles.text}>French: Fluent</Text>
-            <Text style={styles.text}>German: Basics</Text>
-            <Text style={styles.text}>Spanish: Intermediate</Text>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>SKILLS</Text>
+                {skills.map((skill, index) => (
+                  <Text key={index} style={styles.text}>
+                    • {skill}
+                  </Text>
+                ))}
+              </View>
+
+              <View style={[styles.section, { borderBottomWidth: 0 }]}>
+                <Text style={styles.sectionTitle}>LANGUAGES</Text>
+                {languages.map((lang, index) => (
+                  <Text key={index} style={styles.text}>
+                    {lang.language}: {lang.proficiency}
+                  </Text>
+                ))}
+              </View>
+            </View>
+
+            {/* Right Column */}
+            <View style={styles.rightColumn}>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>PROFILE SUMMARY</Text>
+                <Text style={styles.text}>{profileSummary}</Text>
+              </View>
+
+              <View style={[styles.section, { borderBottomWidth: 0 }]}>
+                <Text style={styles.sectionTitle}>WORK EXPERIENCE</Text>
+                {workExperience.map((exp, index) => (
+                  <React.Fragment key={index}>
+                    <Text style={[styles.subTitle, { fontSize: 9 }]}>
+                      {exp.company} ({exp.period})
+                    </Text>
+                    <Text style={styles.subTitleRole}>{exp.role}</Text>
+                    {exp.responsibilities.map((resp, respIndex) => (
+                      <Text key={respIndex} style={styles.text}>
+                        {resp}
+                      </Text>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </View>
+            </View>
           </View>
         </View>
-
-        {/* Right Column */}
-        <View style={styles.rightColumn}>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>PROFILE SUMMARY</Text>
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptate consectetur ipsum praesentium minima quas vero nobis!
-              Ut, nemo omnis, consectetur assumenda asperiores ad ipsam
-              provident odio nesciunt, beatae nobis repellat? Lorem ipsum dolor
-              sit amet consectetur, adipisicing elit. Quisquam, a recusandae
-              dolorum, quaerat impedit aliquam quae molestiae fugit similique
-              quibusdam sequi tenetur ratione? Iusto alias voluptate quos
-              consequatur aut eligendi.
-            </Text>
-          </View>
-
-          <View style={[styles.section, { borderBottomWidth: 0 }]}>
-            <Text style={styles.sectionTitle}>WORK EXPERIENCE</Text>
-            <Text style={[styles.subTitle, { fontSize: 9 }]}>
-              Borchelle Studio (2030 - Present)
-            </Text>
-            <Text style={styles.subTitleRole}>
-              Marketing Manager & Specialist
-            </Text>
-            <Text style={styles.text}>
-              • Led successful marketing strategies.
-            </Text>
-            <Text style={styles.text}>• Managed cross-channel campaigns.</Text>
-            <Text style={styles.text}>• Managed social media accounts.</Text>
-
-            <Text style={styles.subTitle}>Fauget Studio (2025 - 2029)</Text>
-            <Text style={styles.subTitleRole}>
-              Marketing Manager & Specialist
-            </Text>
-            <Text style={styles.text}>• Conducted market research.</Text>
-            <Text style={styles.text}>• Developed marketing content.</Text>
-            <Text style={styles.text}>• Managed social media accounts.</Text>
-
-            <Text style={styles.subTitle}>Fauget Studio (2020 - 2024)</Text>
-            <Text style={styles.subTitleRole}>
-              Marketing Manager & Specialist
-            </Text>
-            <Text style={styles.text}>• Conducted market research.</Text>
-            <Text style={styles.text}>• Developed marketing content.</Text>
-            <Text style={styles.text}>• Managed social media accounts.</Text>
-          </View>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
-};
+      </SafeAreaView>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    backgroundColor: "#FFF",
+    paddingTop: 50,
+  },
   container: {
     padding: 20,
-    backgroundColor: "#fafafa",
-    borderRadius: 10,
+    backgroundColor: "#f7f7f7",
   },
   header: {
     alignItems: "center",
