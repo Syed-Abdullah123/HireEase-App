@@ -33,7 +33,7 @@ interface ResumeTemplateProps {
 const ResumeTemplate = forwardRef<View, ResumeTemplateProps>(
   (
     {
-      name = "OLIVIA WILSON",
+      name = "YOUR NAME HERE",
       jobTitle = "MARKETING MANAGER",
       contactInfo = {
         phone: "+123-456-7890",
