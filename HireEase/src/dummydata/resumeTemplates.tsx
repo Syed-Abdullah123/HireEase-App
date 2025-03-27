@@ -1,5 +1,3 @@
-import ResumeTemplate from "../templates/resume1/resume";
-
 export const templates = [
   {
     id: 1,
