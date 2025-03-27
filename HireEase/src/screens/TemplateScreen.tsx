@@ -14,7 +14,6 @@ import {
 import SearchComponent from "../components/SearchComponent";
 import { templates } from "../dummydata/resumeTemplates";
 import PrimaryButton from "../components/PrimaryButton";
-import ResumeTemplate from "../templates/resume1/resume";
 
 const { width, height } = Dimensions.get("window");
 
@@ -69,7 +68,6 @@ export default function TemplateScreen({ navigation }: { navigation: any }) {
       onPress={() => setSelectedTemplate(item)}
     >
       <View style={styles.template}>
-        {/* <TemplateRenderer id={item.id} title={item.title} style={item.style} /> */}
         <Image source={item.image} style={styles.image} />
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.templateStyle}>{item.style}</Text>
