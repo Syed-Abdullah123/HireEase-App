@@ -31,7 +31,7 @@ export const templates = [
   },
   {
     id: 6,
-    title: "Aurora",
+    title: "Estelle",
     style: "Professional",
     image: require("../../assets/images/CV-pic-3.jpg"),
   },
