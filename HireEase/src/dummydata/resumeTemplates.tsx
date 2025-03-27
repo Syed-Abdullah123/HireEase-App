@@ -1,9 +1,11 @@
+import ResumeTemplate from "../templates/resume1/resume";
+
 export const templates = [
   {
     id: 1,
     title: "Celeste",
     style: "Minimalist",
-    image: require("../../assets/images/CV-pic-1.jpg"),
+    image: require("../../assets/images/resume preview 1.jpg"),
   },
   {
     id: 2,
