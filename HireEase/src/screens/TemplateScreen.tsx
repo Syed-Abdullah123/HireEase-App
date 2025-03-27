@@ -10,12 +10,11 @@ import {
   Modal,
   Dimensions,
   Pressable,
-  Keyboard,
 } from "react-native";
 import SearchComponent from "../components/SearchComponent";
 import { templates } from "../dummydata/resumeTemplates";
 import PrimaryButton from "../components/PrimaryButton";
-import TemplateRenderer from "../components/TemplateRenderer";
+import ResumeTemplate from "../templates/resume1/resume";
 
 const { width, height } = Dimensions.get("window");
 
